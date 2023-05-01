@@ -17,6 +17,7 @@
 
 * About                                                            :noexport:
 
+- Edit using the =org-beamer-mode= minor mode.
 - Exportation to PDF using =C-c C-e l P/O=.
 
 * Section 1
