@@ -1,0 +1,42 @@
+#+STARTUP: beamer
+#+TITLE: My Title
+#+SUBTITLE: My Subtitle
+#+AUTHOR: Pierre AYOUB
+#+DATE: January 1, 1970
+#+OPTIONS: H:2
+#+BEAMER_THEME: CambridgeUS
+#+BEAMER_FONT_THEME: serif
+# Add a mini ToC at the beginning of each section.
+#+BEAMER_HEADER: \AtBeginSection[]
+#+BEAMER_HEADER: {
+#+BEAMER_HEADER:   \begin{frame}
+#+BEAMER_HEADER:   \frametitle{Contents}
+#+BEAMER_HEADER:   \tableofcontents[currentsection]
+#+BEAMER_HEADER:   \end{frame}
+#+BEAMER_HEADER: }
+
+* About                                                            :noexport:
+
+- Exportation to PDF using =C-c C-e l P/O=.
+
+* Section 1
+
+** Frame 1
+
+#+ATTR_BEAMER: :overlay <+->
+- Bullet 1
+- Bullet 2
+
+* Section 2
+
+** Frame 1
+
+#+CAPTION: My Logo (Scaled)
+#+ATTR_LATEX: :scale 0.10
+[[file:imgs/logo.png]]
+
+** Frame 2
+
+#+CAPTION: My Logo (Textwidth)
+#+ATTR_LATEX: :width 0.8\textwidth
+[[file:imgs/logo.png]]
