@@ -1,0 +1,8 @@
+* About
+
+This is a demonstration on how to use a special Makefile called
+[[file:Makefile.emacs][=Makefile.emacs=]] which will contains commands to be executed through the =M-x
+compile= command of Emacs defined through the [[file:.dir-locals.el][=.dir-locals.el=]] file.
+
+From any file of the project, one can call the =M-x compile= to execute the
+default target. With =C-u M-x compile=, one can choose the target to execute.
