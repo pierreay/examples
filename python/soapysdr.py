@@ -90,7 +90,9 @@ if __name__ == "__main__":
         # Increase timeout to 10s as some SDRs can be slow to send samples.
         sr = sdr.readStream(rx_stream, [rx_buff], rx_buff_len, timeoutUs=10000000)
         # Check the readStream operation.
-        if sr.ret > 0 and sr.flags == 1 << 2:
+        # The following line seems to accept overflows, hence, samples set to 0:
+        # if sr.ret > 0 and sr.flags == 1 << 2:
+        if sr.ret == rx_buff_len and sr.flags == 1 << 2:
             print("Number of samples: sr.ret: {}".format(sr.ret))
             print("Timestamp for receive buffer: sr.timeNs: {}".format(sr.timeNs))
             rx_signal = np.concatenate((rx_signal, rx_buff))
