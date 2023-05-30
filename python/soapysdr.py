@@ -97,8 +97,8 @@ if __name__ == "__main__":
         else:
             print("Error code: sr.ret: {}".format(sr.ret))                             # See "/usr/local/include/SoapySDR/Errors.h".
             print("Flags set by receive operation: sr.flags: {0:b}b".format(sr.flags)) # See "/usr/local/include/SoapySDR/Constants.h".
-    # Discard the first 0 and only keep the required number of samples.
-    rx_signal = rx_signal[0:N]
+    # Truncate to desired number of samples.
+    rx_signal = rx_signal[:N]
 
     # Stop streaming and close stream.
     sdr.deactivateStream(rx_stream)
