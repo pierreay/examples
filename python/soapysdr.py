@@ -80,7 +80,12 @@ if __name__ == "__main__":
     sdr.activateStream(rx_stream)
 
     # Create a re-usable buffer for RX samples.
-    rx_buff_len = pow(2, 17) # This is the highest buffer size supported by the HackRF.
+    # - The optimal buffer size is a user choice depending on the used SDR and the sampling rate.
+    # - If the buffer is too large, it will consume all memory.
+    # - If the buffer is too small, it will produces overflow as the computer will not consume fast enough the SDR's samples.
+    # - The highest buffer size supported by the HackRF is 2^17.
+    # - To use the USRP with a sampling rate of 30e6 recording during 1 seconnd, use at least a buffer size of 2^24.
+    rx_buff_len = pow(2, 17) 
     rx_buff = np.array([0] * rx_buff_len, np.complex64)
     # Create the buffer for the final recorded signal.
     rx_signal = np.array([0], np.complex64)
