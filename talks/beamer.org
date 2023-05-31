@@ -1,11 +1,16 @@
+# Startup mode.
 #+STARTUP: beamer
+# Documentation source information.
 #+TITLE: My Title
 #+SUBTITLE: My Subtitle
 #+AUTHOR: Pierre AYOUB
 #+DATE: January 1, 1970
+# Structure information.
 #+OPTIONS: H:2
 #+BEAMER_THEME: CambridgeUS
 #+BEAMER_FONT_THEME: serif
+# Use org-columns (C-c C-x C-c) to see slides summary.
+#+COLUMNS: %25ITEM %TAGS %PRIORITY %TODO %BEAMER_env% %BEAMER_col%
 # Add a mini ToC at the beginning of each section.
 #+BEAMER_HEADER: \AtBeginSection[]
 #+BEAMER_HEADER: {
@@ -14,37 +19,152 @@
 #+BEAMER_HEADER:   \tableofcontents[currentsection]
 #+BEAMER_HEADER:   \end{frame}
 #+BEAMER_HEADER: }
+# Put following list in shaded overlay mode.
 #+MACRO: overlay (eval (concat "\\setbeamercovered{transparent}" "\n" "#+ATTR_BEAMER: :overlay <+->"))
+# Put enbedded text into smallest font.
+#+MACRO: small @@latex:{\footnotesize $1}@@
 
 * About                                                            :noexport:
 
 - Edit using the =org-beamer-mode= minor mode.
-- Exportation to PDF using =C-c C-e l P/O=.
+- Export to PDF using =C-c C-e l P/O=.
+- Convert Draw.IO diagrams to PDF using =M-! make drawio=.
 
-* Section 1
+* Sectioning
 
-** Frame 1 with Simple Overlay
+** Framing 1
+
+*** Boxing 1
+
+Dummy.
+
+*** Boxing 2
+
+Dummy.
+
+** Framing 2
+
+Dummy.
+
+*** Ignored Heading                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+- Exported text inside ignored heading.
+- Insert it with =C-c C-b i=.
+
+** Columns
+
+Use =C-c C-b |= inside the headings below to insert columns environment.
+
+*** Left Column                                                       :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+**** Box Inside a Column                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+Debitis culpa ratione ipsum. Voluptas a at harum et eius. Sapiente ut qui optio
+quaerat. Occaecati asperiores magni repudiandae qui dicta. Delectus molestias
+delectus non est laboriosam est doloremque perferendis.
+
+*** Right Column                                                      :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+Debitis culpa ratione ipsum. Voluptas a at harum et eius. Sapiente ut qui optio
+quaerat. Occaecati asperiores magni repudiandae qui dicta. Delectus molestias
+delectus non est laboriosam est doloremque perferendis.
+
+* Text
+
+** Markup
+
+*Emphased*
+
+/Italic/
+
+=Code=
+
+** Size
+
+#+LATEX: \tiny
+Small text.
+
+#+LATEX: \large
+Huge text.
+
+** Lists
+
+*** Simple overlay
 
 #+ATTR_BEAMER: :overlay <+->
 - Bullet 1
 - Bullet 2
 
-** Frame 2 with Gray-shaded Overlay
+*** Gray-shaded overlay
 
 {{{overlay}}}
 - Bullet 1
 - Bullet 2
 
-* Section 2
+* Images
 
-** Frame 1
+** Insertion (PNG)
 
 #+CAPTION: My Logo (Scaled)
 #+ATTR_LATEX: :scale 0.10
 [[file:imgs/logo.png]]
 
-** Frame 2
+** Insertion (PNG)
 
 #+CAPTION: My Logo (Textwidth)
 #+ATTR_LATEX: :width 0.8\textwidth
 [[file:imgs/logo.png]]
+
+** Insertion (PDF)
+
+#+NAME: class_diagram
+#+CAPTION: Caption is necessary to have a working label reference
+#+ATTR_LATEX: :scale 0.45
+[[file:imgs/class_diagram.drawio.pdf]]
+
+- Vectorial.
+- Selectable text.
+- Embedded Math with LaTeX syntax.
+
+** Reference
+
+You can refer to an image using =[[NAME]]=, /e.g./ with Figure [[class_diagram]].
+
+* Miscellaneous
+
+** Maths
+
+- \(2^{24} \approx 17e^6\)
+- $\frac{1}{2} = 2^{-1}$
+
+** Source
+
+*** Source
+
+#+begin_src bash :results output :exports both
+echo "Hi, there!"
+du
+#+end_src
+
+#+RESULTS:
+: Hi, there!
+: 92	./imgs
+: 20	./_minted-beamer
+: 424	.
+
+** Symbols
+
+- Right-arrow :: \rightarrow
+
