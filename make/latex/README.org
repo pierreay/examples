@@ -1,0 +1,3 @@
+* About
+
+The base Makefile for a LaTeX build document.
