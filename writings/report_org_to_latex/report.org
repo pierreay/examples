@@ -1,0 +1,487 @@
+#+TITLE: Simulating Transient Execution Attacks with /gem5/
+#+AUTHOR: Pierre AYOUB
+#+EMAIL: pierre.ayoub@irisa.fr
+#+LANGUAGE: en
+#+SETUPFILE: report.setup
+
+* Preamble                                                           :ignore:
+
+** Acronyms                                                          :ignore:
+
+   {{{acronym(test,TEST,The Eset Stream Timing)}}}
+
+** Glossary                                                          :ignore:
+
+   {{{glossary(test,Test element,element,elements,A more or less long definiton\, with multiple phrase. Ideally\, it should be split on multiple lines in the source, but we cannot do that with a macro)}}}
+
+* Document                                                           :ignore:
+
+** Frontmatter                                                       :ignore:
+
+   #+BEGIN_EXPORT latex
+   \frontmatter
+   \pagestyle{headings}
+   #+END_EXPORT
+
+*** Cover Page                                                       :ignore:
+
+    #+BEGIN_EXPORT latex
+    \newcommand{\titlelittlespace}{\vspace{2em}}
+    \newcommand{\titlemediumspace}{\vspace{5em}}
+    \newcommand{\titlelargespace}{\vspace{10em}}
+
+    \begin{titlepage}
+        \begin{minipage}[t]{0.5\textwidth}
+            \begin{flushleft}
+                % \includegraphics[width=0.75\textwidth]{coverpage/img/UVSQ_ISTY.jpg}
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.5\textwidth}
+            \begin{flushright}
+                % \includegraphics[width=0.75\textwidth]{coverpage/img/CNRS_IRISA.png}
+            \end{flushright}
+        \end{minipage}
+
+        \titlelittlespace
+
+        \begin{center}
+            \textsc{\Large{University of Versailles Saint-Quentin-en-Yvelines (UVSQ)}} \\
+            \titlelittlespace
+            \textsc{\Large{Institute of Sciences and Techniques of Yvelines (ISTY)}} \\
+            \titlelittlespace
+            \textnormal{\Large{$5^{th}$ \text{ year Internship at CNRS/IRISA}}}
+
+            \titlemediumspace
+            \hrule
+            \titlelittlespace
+
+            \fontsize{10mm}{7mm}\selectfont 
+            \textup{Simulating Transient Execution Attacks with \textit{gem5}}
+            \vspace{-1em}
+
+            \titlelittlespace
+            \hrule
+            \titlelittlespace
+        \end{center}
+
+        \begin{minipage}[t]{0.5\textwidth}
+            \begin{flushleft}
+                \textnormal{\large{\bf Internship Supervisor}} \\
+                {\large Clémentine MAURICE \\ Annelie HEUSER} \\
+                \titlelittlespace
+                \textnormal{\large{\bf Referent Teacher}} \\
+                {\large Louis GOUBIN}
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.5\textwidth}
+            \begin{flushright}
+                \textnormal{\large{\bf Author}} \\
+                {\large Pierre AYOUB}
+            \end{flushright}
+        \end{minipage}
+
+        \titlemediumspace
+
+        \begin{center}
+            \textnormal{\large{\bf Internship}} \\
+            \large{Rennes, from 01/04/2020 to 31/09/2020}
+        \end{center}
+
+        \titlelittlespace
+
+        \begin{center}
+            \textnormal{\large{\bf Draft}}
+        \end{center}
+    \end{titlepage}
+    #+END_EXPORT
+
+*** Acknowledgements
+    :PROPERTIES:
+    :UNNUMBERED: t
+    :END:
+
+    #+BEGIN_EXPORT latex
+    \begin{itshape}
+    #+END_EXPORT
+
+    {{{chapter_first_word(A,s)}}} we imagine, the first acknowledgment goes here. \\
+
+    This is the second. \\
+
+    #+BEGIN_EXPORT latex
+    \end{itshape}
+    #+END_EXPORT
+
+*** Abstract                                                         :ignore:
+
+    # Since it's not define in the book class, we define a custom environment for the abstract.
+    #+BEGIN_EXPORT latex
+    \makeatletter
+    \newenvironment{abstract}{
+            \null\vfil
+            \@beginparpenalty\@lowpenalty
+            \begin{center}
+        \bfseries \abstractname
+            \@endparpenalty\@M
+            \end{center}}
+    {\par\vfil\null}
+    \makeatother
+    #+END_EXPORT
+
+    # Clear a double page before the abstract page, set the language and the title.
+    #+BEGIN_EXPORT latex
+    \cleardoublepage
+    \selectlanguage{french}
+    \renewcommand{\abstractname}{Résumé}
+    #+END_EXPORT
+
+    # We can now define our keywords.
+    #+BEGIN_EXPORT latex
+    \paragraph{Mots clés :}
+    #+END_EXPORT
+
+    Mot clé 1, Mot clé 2, ...
+
+    # And we can now write our abstract.
+    #+BEGIN_EXPORT latex
+    \begin{abstract}
+    #+END_EXPORT
+
+    Premier paragraphe.
+
+    Second paragraphe.
+
+    # Switch to the english abstract (same commands as above), then define our keywords.
+    #+BEGIN_EXPORT latex
+    \end{abstract}
+
+    \hrule
+
+    \selectlanguage{english}
+    \renewcommand{\abstractname}{Abstract}
+
+    \paragraph{Keywords :}
+    #+END_EXPORT
+
+    First keyword, second keyword, ...
+
+    # And let's start our english abstract.
+    #+BEGIN_EXPORT latex
+    \begin{abstract}
+    #+END_EXPORT
+
+    First abstract paragraph.
+
+    Second abstract paragraph.
+
+    # End the abstract section.
+    #+BEGIN_EXPORT latex
+    \end{abstract}
+
+    % Reset french typography if we were in french before.
+    % \selectlanguage{french}
+    #+END_EXPORT
+
+*** Table of Contents                                                :ignore:
+
+    #+BEGIN_EXPORT latex
+    {\hypersetup{hidelinks} \tableofcontents}
+    #+END_EXPORT
+
+*** List of Figure / Tables / Algorithms / Listings                  :ignore:
+
+    #+BEGIN_EXPORT latex
+    \listoffigures
+    \listoftables
+    % Produce a "no room for a new write" error.
+    %\listofalgorithms
+    % Produce a "no room for a new write" error.
+    %\listoflistings
+    #+END_EXPORT
+
+*** Glossary                                                         :ignore:
+
+    #+BEGIN_EXPORT latex
+    \printglossary[type=main]
+    #+END_EXPORT
+
+** Mainmatter                                                        :ignore:
+
+   #+BEGIN_EXPORT latex
+   \mainmatter
+   \pagestyle{mainmatter}
+   #+END_EXPORT
+
+*** Introduction                                                     :ignore:
+
+    #+BEGIN_EXPORT latex
+    \chapterunnumbered{Introduction}
+    #+END_EXPORT
+
+    #+BEGIN_EXPORT latex
+    \index{Introduction}
+    #+END_EXPORT
+
+    {{{chapter_first_word(T,his)}}} is the introduction. We can refer to a
+    glossary element like this, \gls{g.test}, and link to an acronym like that
+    \ac{a.test}.
+
+*** Internship Context
+
+**** Subsection
+
+***** Subsubsection
+
+**** Subsection
+
+*** Micro-Architectural Security
+
+**** Subsection
+
+***** Subsubsection
+
+**** Subsection
+
+*** Micro-Architectural Simulation
+
+**** Subsection
+
+***** Subsubsection
+
+**** Subsection
+
+*** Contributions
+
+**** Subsection
+
+***** Subsubsection
+
+**** Subsection
+
+*** Conclusion                                                       :ignore:
+
+    #+BEGIN_EXPORT latex
+    \chapterunnumbered{Conclusion}
+    #+END_EXPORT
+
+** Appendices                                                        :ignore:
+
+   #+BEGIN_EXPORT latex
+   \begin{appendices}
+   #+END_EXPORT
+
+   # Allow to have appendices under an "Appendices" section in TOC (Part 1):
+   #+BEGIN_EXPORT latex
+   \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+   \makeatletter
+   \addtocontents{toc}{
+       \begingroup
+           \let\protect\l@chapter\protect\l@section
+           \let\protect\l@section\protect\l@subsection
+   }
+   \makeatother
+   #+END_EXPORT
+
+*** Chapter
+
+**** Section
+
+     First appendix.
+
+     #+BEGIN_EXPORT latex
+     \newpage
+     #+END_EXPORT
+
+**** Section
+
+     Second appendix.
+
+*** Chapter
+
+**** Section
+
+     Third appendix.
+
+     # Allow to have appendices under an "Appendices" section in TIC (Part 2):
+     #+BEGIN_EXPORT latex
+     \addtocontents{toc}{\endgroup}
+     #+END_EXPORT
+
+     #+BEGIN_EXPORT latex
+     \end{appendices}
+     #+END_EXPORT
+
+** Backmatter                                                        :ignore:
+
+   #+BEGIN_EXPORT latex
+   \backmatter
+   \pagestyle{headings}
+   #+END_EXPORT
+
+*** Bibliography                                                     :ignore:
+
+    # This is our bibliography, which must be tangle with =C-c C-v t= to update it:
+    #+BEGIN_SRC bibtex :tangle (s-replace ".org" ".bib" (buffer-name)) :eval never :exports none
+    % * Proceedings:
+
+    @proceedings{Pro.Author.Year,
+        Author = {Last Name, First Name},
+        Organization = {Name},
+        Title = {Title},
+        SubTitle = {Subtitle},
+        Year = {1900},
+        EventTitle = {Event},
+        Location = {Location},
+        URL = {URL},
+    }
+
+    % * Websites:
+
+    @online{Web.Author.Key,
+        Author = {Last Name, First Name},
+        Organization = {Name},
+        Title = {Title},
+        SubTitle = {SubTitle},
+        URL = {URL},
+        Note = {Consulted on ...},
+    }
+
+    % * Articles:
+
+    @article{Art.Author.Year,
+        Author = {Last Name, First Name and Last Name, First Name},
+        Journal = {Name},
+        Title = {Title},
+        Date = {1900-01-01},
+        Year = {1900},
+        Month = {01},
+        DOI = {DOI},
+        ISSN = {ISSN},
+        Pages = {Start--End},
+
+        URL = {URL},
+    }
+
+    % * Technical Reports:
+
+    @techreport{Rep.Author.Year,
+        Author = {Last Name, First Name},
+        Institution = {Name},
+        Title = {Title},
+        SubTitle = {SubTitle},
+        Date = {1900-01-01},
+        URL = {URL},
+    }
+
+    % * Thesis:
+
+    @mastersthesis{MTh.Author.Year,
+        Author = {Last Name, First Name},
+        Institution = {Name},
+        Title = {Title},
+        Year = {1900},
+    }
+
+    @phdthesis{PTh.Author.Year,
+        Author = {Last Name, First Name},
+        Institution = {Name},
+        Title = {Title},
+        SubTitle = {SubTitle},
+        Date = {1900-01-01},
+        URL = {URL},
+    }
+
+    % * Manuals and Specifications:
+
+    @manual{Man.Author.Year,
+        Organization = {Name},
+        Title = {Title},
+        SubTitle = {SubTitle},
+        Year = {1900},
+        URL = {URL},
+        Note = {Version X.X},
+    }
+    #+END_SRC
+
+    # Display all the bibliography, even those which were not referenced:
+    #+BEGIN_EXPORT latex
+    \nocite{*}
+    #+END_EXPORT
+
+    # To print all the bibliography in one block:
+    # \printbibliography[heading=bibintoc]
+
+    # To print the bibliography per type of entry:
+    #+BEGIN_EXPORT latex
+    \printbibheading[heading=bibintoc]
+    \printbibliography[heading=subbibliography, type=inproceedings, title={Proceedings}]
+    \printbibliography[heading=subbibliography, type=article,       title={Articles}]
+    \printbibliography[heading=subbibliography, type=report,        title={Technical Reports}]
+    \printbibliography[heading=subbibliography, type=book,          title={Books}]
+    \printbibliography[heading=subbibliography, type=manual,        title={Manuals and Specifications}]
+    \printbibliography[heading=subbibliography, type=online,        title={Websites}]
+    \printbibliography[heading=subbibliography, type=thesis,        title={Thesis}]
+    #+END_EXPORT
+
+*** Acronyms                                                         :ignore:
+
+   #+BEGIN_EXPORT latex
+   {\printacronyms \glsaddallunused}
+   #+END_EXPORT
+
+*** Index                                                            :ignore:
+
+   #+BEGIN_EXPORT latex
+   \printindex
+   #+END_EXPORT
+
+* Build                                                            :noexport:
+
+  This is the little script used to build the report, relying only on 3 files
+  (without external resources in sub-directories):
+  - =Makefile=
+  - =report.org=
+  - =report.setup=
+
+  To get it works, you have to export at least one time the report to a LaTeX
+  file like this: =C-c C-e l l=. Then, you can just call the block by its name.
+
+  #+NAME: build_all_async
+  #+BEGIN_SRC emacs-lisp :results output silent :exports none
+  (org-babel-tangle)
+  (org-export-dispatch "C-u C-u")
+  (async-shell-command "make && make clean")
+  #+END_SRC
+
+  Bind derivatives change variable values *locally* on export. This section has
+  to be in the exported =.org= file.
+
+  Don't let /Org-mode/ generating automatically the title page and the /ToC/,
+  because we define them manually using LaTeX.
+  #+BIND: org-latex-title-command ""
+  #+BIND: org-latex-toc-command ""
+
+  Get source code blocks highlighting from the /Minted/ package, and set a gray
+  background:
+  #+BIND: org-latex-listings minted
+  #+BIND: org-latex-minted-options (("bgcolor" "friendlybg"))
+
+  Beautifies /Org/ table with /BookTabs/ package. It will only work if the
+  package is loaded, which we do above:
+  #+BIND: org-latex-tables-booktabs t
+
+  Let /Org-mode/ exports =TODO= keywords in the titles of the final document
+  during its writing (=t=), but disable it when the document will be finished
+  (=nil=):
+  #+BIND: org-export-with-todo-keywords t
+
+  Set some local variables to this buffer:
+  - =org-export-allow-bind-keywords= allow to use the =BIND= directive.
+  - =org-latex-classes= is redefined to use =book= class without the =part=
+    sectioning (directly use =chapter=).
+
+  # Local Variables:
+  # mode: org
+  # org-export-allow-bind-keywords: t
+  # eval: (add-to-list 'org-latex-classes '("book-noparts" "\\documentclass{book}" ("\\chapter{%s}" . "\\chapter*{%s}") ("\\section{%s} \\paragraph{}" . "\\section*{%s} \\paragraph{}") ("\\subsection{%s} \\paragraph{}" . "\\subsection*{%s} \\paragraph{}") ("\\subsubsection{%s} \\paragraph{}" . "\\subsubsection*{%s} \\paragraph{}") ("\\paragraph{%s}" . "\\paragraph*{%s}") ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  # End:

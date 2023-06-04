@@ -1,0 +1,263 @@
+# -*- mode: org; -*-
+
+* Org-mode                                                         :noexport:
+
+This section configure the /Org-mode/ behavior.
+
+Use special =TODO= keywords adapted to writing:
+#+TODO: SUMMARIZING(!) WRITING(!) PROOFREADING(!) | FINISHED
+
+When logging =TODO= states, use a =LOGBOOK= drawer instead of simple note in
+the document body:
+#+STARTUP: logdrawer
+
+Define some /LaTeX/ useful macros:
+#+MACRO: par @@latex: \paragraph{$1}.@@
+#+MACRO: idx @@latex: \index{$1}@@
+#+MACRO: acronym      #+LATEX_HEADER: \newacronym{a.$1}{$2}{$3}
+#+MACRO: acronym_glo  #+LATEX_HEADER: \newacronym[see={[Glossary:]{g.$1}}]{a.$1}{$2}{$3}
+#+MACRO: glossary     #+LATEX_HEADER: \newglossaryentry{g.$1}{name=$2,text=$3,plural=$4,description={$5}}
+#+MACRO: glossary_acr #+LATEX_HEADER: \newglossaryentry{g.$1}{name=$2,text=$3,plural=$4,description={$5},see=[Acronyms:]{a.$1}}
+#+MACRO: chapter_first_word \lettrine{$1}{\scshape $2}
+
+* LaTeX                                                            :noexport:
+
+This section configure the /LaTeX/ preamble of our exported document.
+
+Define the class and the default appearance. We use the =book= class
+(hesitate with the =report= class):
+#+LATEX_CLASS: book-noparts
+#+LATEX_CLASS_OPTIONS: [11pt,a4paper]
+
+** Packages
+
+Use English typography:
+#+LATEX_HEADER: \usepackage[english]{babel}
+
+Configure the margin:
+#+LATEX_HEADER: \usepackage[margin=2cm]{geometry}
+
+Colorize table:
+#+LATEX_HEADER: \usepackage[table]{xcolor}
+
+Write pretty algorithms:
+#+LATEX_HEADER: \usepackage[english,onelanguage,linesnumbered,ruled,vlined,commentsnumbered]{algorithm2e}
+
+Colorize source code:
+#+LATEX_HEADER: \usepackage[newfloat]{minted}
+#+LATEX_HEADER: \definecolor{friendlybg}{HTML}{f0f0f0}
+Override =fcolorbox= command since we don't want /Minted/ to draw red boxes
+over supposed syntax errors:
+#+LATEX_HEADER: \AtBeginEnvironment{minted}{\dontdofcolorbox}
+#+LATEX_HEADER: \def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+
+Use pretty small capitals in various fonts:
+#+LATEX_HEADER: \usepackage{slantsc}
+
+Use standardized quotes:
+#+LATEX_HEADER: \usepackage[autostyle=true,french=guillemets]{csquotes}
+
+Allow to use tall capitals at the beginning of a chapter:
+#+LATEX_HEADER: \usepackage{lettrine}
+
+Define various enumeration styles:
+#+LATEX_HEADER: \usepackage[]{enumerate}
+
+Recognize URL and makes them clickable:
+#+LATEX_HEADER: \usepackage[]{url}
+
+Precisely adjust some graphics boxes:
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+
+Include /SVG/ files just as easily as a /PNG/ :
+#+LATEX_HEADER: \usepackage[]{svg}
+
+Produces figures which text can flow around:
+#+LATEX_HEADER: \usepackage{wrapfig}
+
+Import a lot of fonts and symbols standardized by /AMS/:
+#+LATEX_HEADER: \usepackage{amsfonts}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amstext}
+
+Format the display of numbers:
+#+LATEX_HEADER: \usepackage[]{numprint}
+
+Use Mathematics for Physics (vector, linear algebra):
+#+LATEX_HEADER: \usepackage{physics}
+
+Allow to display a /PDF/ page in landscape mode:
+#+LATEX_HEADER: \usepackage[options]{pdflscape}
+
+Allow to create a multi-columns environment:
+#+LATEX_HEADER: \usepackage[]{multicol}
+
+Import alternative section titles:
+#+LATEX_HEADER: \usepackage[]{titlesec}
+
+Customize footnotes by a large number of ways:
+# Disabled because it clashes with HyperRef, thus footnotes are linked to
+# the title page. To fix the problem, this package needs to be loaded before
+# the "hyperref" package, therefore we need to disable Emacs default LaTeX
+# package and load them ourselves.
+# #+LATEX_HEADER: \usepackage[bottom]{footmisc}
+
+Use the [[https://en.wikipedia.org/wiki/International_System_of_Units][International System of Units]] standard:
+#+LATEX_HEADER: \usepackage[binary-units]{siunitx}
+
+Import mathematical symbols and some typeset ornaments:
+#+LATEX_HEADER: \usepackage[]{fourier-orns}
+
+Extends the array and tabular environments:
+#+LATEX_HEADER: \usepackage{array}
+
+Pretty, professional and clean table:
+#+LATEX_HEADER: \usepackage{booktabs}
+
+Make a diagonal header cell in a table:
+#+LATEX_HEADER: \usepackage{diagbox}
+
+Understand /PDF/ files and convert them in table:
+#+LATEX_HEADER: \usepackage{csvsimple}
+
+Configure hyperlinks handling into the /PDF/ file:
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks=true,
+#+LATEX_HEADER:     linkcolor=blue,
+#+LATEX_HEADER:     citecolor=red
+#+LATEX_HEADER: }
+
+Intelligent cross-referencing by auto-determination of reference format:
+#+LATEX_HEADER: \usepackage[]{cleveref}
+
+Add /Bibliography/ and /Index/ to the /Table of Contents/:
+#+LATEX_HEADER: \usepackage[nottoc,numbib]{tocbibind}
+
+Add a /Glossaries/:
+#+LATEX_HEADER: \usepackage[acronym,toc,shortcuts]{glossaries}
+And construct it:
+#+LATEX_HEADER: \makeglossaries
+
+Add an /Appendix/:
+#+LATEX_HEADER: \usepackage[toc,page,titletoc]{appendix}
+
+Add an /Index/:
+#+LATEX_HEADER: \usepackage{makeidx}
+And construct it:
+#+LATEX_HEADER: \makeindex
+
+Create advanced figures:
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{patterns}
+#+LATEX_HEADER: \usetikzlibrary{shapes.geometric}
+
+*** BibLaTeX
+
+Add a /Bibliography/ with /Biber/ backend:
+#+LATEX_HEADER: \usepackage[
+#+LATEX_HEADER:     backend=biber,
+#+LATEX_HEADER:     style=alphabetic,
+#+LATEX_HEADER: ]{biblatex}
+
+The source of the bibliography location:
+#+LATEX_HEADER: \addbibresource{report.bib}
+
+*** FancyHdr
+
+This package allow to deeply customize the header style:
+#+LATEX_HEADER: \usepackage[]{fancyhdr}
+
+Define a custom header for the main matter part:
+#+LATEX_HEADER: \fancypagestyle{mainmatter} {
+Clear the center footer to define a new one:
+#+LATEX_HEADER:     \fancyfoot[C]{}
+Set the page number at the right:
+#+LATEX_HEADER:     \fancyfoot[R]{\thepage}
+Set the author name at the left:
+#+LATEX_HEADER:     \fancyfoot[L]{\authorname}
+Set a fancy head and foot rule:
+#+LATEX_HEADER:     \renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:     \renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:     \renewcommand\headrule{
+#+LATEX_HEADER:         \hrulefill
+#+LATEX_HEADER:         \raisebox{-2.1pt}{\quad\decofourleft\decotwo\decofourright\quad}
+#+LATEX_HEADER:         \hrulefill
+#+LATEX_HEADER:     }
+#+LATEX_HEADER:     \renewcommand\footrule{
+#+LATEX_HEADER:         \hrulefill
+#+LATEX_HEADER:         \raisebox{-2.1pt}{\quad\decofourleft\decotwo\decofourright\quad}
+#+LATEX_HEADER:         \hrulefill
+#+LATEX_HEADER:     }
+#+LATEX_HEADER: }
+
+*** FncyChap
+
+This package allow to set predefined style for =book= class and customize
+them:
+#+LATEX_HEADER: \usepackage[Bjornstrup]{fncychap}
+
+We love two themes of this package: =Lenny= and =Bjornstrup=.
+
+We use =Bjornstrup= as default style, and use these two elements of =Lenny= below:
+#+LATEX_HEADER: \ChNameVar{\fontsize{14}{16}\usefont{OT1}{phv}{m}{n}\selectfont}
+#+LATEX_HEADER: \ChTitleVar{\raggedleft\Huge\bfseries\rm}
+
+** Commands
+
+Print the name of the author:
+#+LATEX_HEADER: \newcommand{\authorname}{Pierre AYOUB}
+
+*** TikZ Circles
+
+#+LATEX_HEADER: \NewDocumentCommand{\statcirc}{ O{#2} m }{%
+#+LATEX_HEADER:     \begin{tikzpicture}
+#+LATEX_HEADER:     \fill[black!50!#2] (0,0) circle (1.0ex); % Fill circle with base colour (arg#2)
+#+LATEX_HEADER:     \fill[black!50!#1] (0,0) -- (180:1ex) arc (180:0:1ex) -- cycle; % Fill a half circle filled with second colour (arg#1), if specified
+#+LATEX_HEADER:     \end{tikzpicture}
+#+LATEX_HEADER: }
+
+*** TikZ Stars
+
+#+LATEX_HEADER: \newcommand\score[2]{%
+#+LATEX_HEADER:   \pgfmathsetmacro\pgfxa{#1 + 1}%
+#+LATEX_HEADER:   \tikzstyle{scorestars}=[star, star points=5, star point ratio=2.30, draw, inner sep=1.7pt, anchor=outer point 3]%
+#+LATEX_HEADER:   \begin{tikzpicture}[baseline]
+#+LATEX_HEADER:     \foreach \i in {1, ..., #2} {
+#+LATEX_HEADER:       \pgfmathparse{\i<=#1 ? "black" : "black!10"}
+#+LATEX_HEADER:       \edef\starcolor{\pgfmathresult}
+#+LATEX_HEADER:       \draw (\i*3.00ex, 0) node[name=star\i, scorestars, fill=\starcolor]  {};
+#+LATEX_HEADER:    }
+#+LATEX_HEADER:   \end{tikzpicture}%
+#+LATEX_HEADER: }
+
+*** Unnumbered Chapter
+
+Generate an unnumbered chapter which still appear in TOC.
+
+#+LATEX_HEADER: \newcommand{\chapterunnumbered}[1]{
+Display a chapter which is not numbered and not in the TOC:
+#+LATEX_HEADER:     \chapter*{#1}
+Add a line in the TOC refering to this chapter:
+#+LATEX_HEADER:     \addcontentsline{toc}{chapter}{#1}
+Add the title of the chapter into header of this section:
+#+LATEX_HEADER:     \markboth{\MakeUppercase{#1}}{}
+#+LATEX_HEADER: }
+
+*** Tagged Comment
+
+Generate a switchable and visible comment which will be exported in the
+/PDF/:
+
+# Change "true" for "false" if you want to disable comments.
+#+LATEX_HEADER: \newif\ifNotes\Notestrue
+#+LATEX_HEADER: \newcommand{\swallow}[1]{}
+#+LATEX_HEADER: \ifNotes
+#+LATEX_HEADER:   \newcommand{\colorcomment}[2]{{\color{#1}[#2]}\xspace}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:   \newcommand{\colorcomment}[2]{\relax}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: \newcommand{\taggedcolorcomment}[3]{\colorcomment{#1}{\textbf{#2}: #3}}
+#+LATEX_HEADER: \newcommand{\clementine}[1]{\taggedcolorcomment{orange}{Clémentine}{#1}}
+#+LATEX_HEADER: \newcommand{\annelie}[1]{\taggedcolorcomment{magenta}{Annelie}{#1}}
+#+LATEX_HEADER: \newcommand{\pierre}[1]{\taggedcolorcomment{red}{Pierre}{#1}}
+# Usage: This is the real text. \clementine{Please, change for this : "This is a suggestion."}
