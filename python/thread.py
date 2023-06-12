@@ -11,8 +11,7 @@ class BackgroundTasks(threading.Thread):
             print("Exit from thread")
 
 if __name__ == "__main__":
+    print("Enter in main")
     t = BackgroundTasks()
     t.start()
-    
-    print("Enter in main")
     print("Exit from main")
