@@ -15,11 +15,15 @@ async def count_2():
     print("Four")
 
 async def main():
+    print("Start of main()")
     await asyncio.gather(count_1(), count_2())
+    print("End of main()")
 
 if __name__ == "__main__":
     import time
     s = time.perf_counter()
+    print("Start of __main__")
     asyncio.run(main())
+    print("End of __main__")
     elapsed = time.perf_counter() - s
     print(f"{__file__} executed in {elapsed:0.2f} seconds.")
