@@ -12,6 +12,8 @@ def f(x):
 if __name__ == "__main__":
     print("Enter in main")
     with ProcessPoolExecutor(max_workers=1) as executor:
+        print("Launch one process asynchronously")
         future = executor.submit(f, 3)
+        print("Result one process asynchronously")
         print(future.result())
     print("Exit from main")
