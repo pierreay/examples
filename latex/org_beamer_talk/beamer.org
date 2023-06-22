@@ -21,8 +21,12 @@
 #+BEAMER_HEADER: }
 # Put following list in shaded overlay mode.
 #+MACRO: overlay (eval (concat "\\setbeamercovered{transparent}" "\n" "#+ATTR_BEAMER: :overlay <+->"))
-# Put enbedded text into smallest font.
+# Put embedded text into smallest font.
 #+MACRO: small @@latex:{\footnotesize $1}@@
+# Put embedded text into colors.
+#+MACRO: red @@latex:\textcolor{red}{$1}@@
+#+MACRO: yellow @@latex:\textcolor{yellow}{$1}@@
+#+MACRO: blue @@latex:\textcolor{blue}{$1}@@
 
 * About                                                            :noexport:
 
