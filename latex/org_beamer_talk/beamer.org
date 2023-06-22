@@ -37,6 +37,9 @@
 * Sectioning
 
 ** Framing 1
+:PROPERTIES:
+:CUSTOM_ID: frame_1
+:END:
 
 *** Boxing 1
 
@@ -57,6 +60,18 @@ Dummy.
 
 - Exported text inside ignored heading.
 - Insert it with =C-c C-b i=.
+
+** Frame Repeating                                             :B_againframe:
+:PROPERTIES:
+:BEAMER_env: againframe
+:BEAMER_ref: #frame_1
+:BEAMER_act: 2
+:END:
+
+Using the following properties (=BEAMER_env= set to =againframe=, =BEAMER_ref=
+set to a =CUSTOM_ID=, and =BEAMER_act= set to =2=) settable using =C-c C-b A=,
+the referenced frame will be repeated and the current text will not be
+exported.
 
 ** Columns
 
