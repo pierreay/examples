@@ -6,12 +6,6 @@ from matplotlib import pyplot as plt
 from scipy import signal
 from scipy.signal import butter, lfilter
 
-# * Statistics
-
-def normalize(arr):
-    """Apply min-max feature scaling normalization to a 1D array."""
-    return (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
-
 # * Filters
 
 def butter_bandstop(lowcut, highcut, fs, order=5):
@@ -67,7 +61,6 @@ def plot_time(s):
     subplot_1.plot(t, s, 'k-')
     plt.xlabel('Time [s]')
     plt.ylabel('Amplitude')
-    subplot_1.axis([None, None, -1, 1])
 
 def plot_freq(s, Fs):
     subplot_2 = plt.subplot(2, 1, 2)
