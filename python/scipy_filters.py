@@ -81,7 +81,7 @@ if __name__ == "__main__":
     Ts = 1.0/Fs              # Sampling interval [s]
     t  = np.arange(0, d, Ts) # Time vector [0.000 .. 0.999]
     f_min = 1                # Minimum frequency [Hz]
-    f_max = 1000             # Maximum frequency [Hz]
+    f_max = Fs/2             # Maximum frequency [Hz]
     s_nb  = 4                # Numbers of signal.
     s     = [0] * s_nb       # List of signal vectors.
     # General individual signals.
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print("f_{}={}".format(i, f))
         s[i] = np.sin(2 * np.pi * f * t)
     # Generate a composed signal with Numpy to operate on it.
-    s_mix = np.multiply.reduce(s)
+    s_mix = np.add.reduce(s)
 
     plot_time_freq(s_mix, Fs)
     plt.show()
