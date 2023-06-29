@@ -68,9 +68,14 @@ def plot_freq(s, Fs):
     plt.xlabel("Time [s]")
     plt.ylabel("Frequency [Hz]")
 
-def plot_time_freq(s, Fs):
+def plot_time_freq(s, Fs, title):
     plot_time(s)
+    plt.title(title)
     plot_freq(s, Fs)
+
+def plot_time_freq_show(s, Fs, title = ""):
+    plot_time_freq(s, Fs, title)
+    plt.show()
 
 # * Example
 
@@ -92,5 +97,18 @@ if __name__ == "__main__":
     # Generate a composed signal with Numpy to operate on it.
     s_mix = np.add.reduce(s)
 
-    plot_time_freq(s_mix, Fs)
-    plt.show()
+    # Bandstop filter.
+    s_mix_bandstop = butter_bandstop_filter(s_mix, 2e2, 4e2, Fs)
+    # Bandpass filter.
+    s_mix_bandpass = butter_bandpass_filter(s_mix, 2e2, 4e2, Fs)
+    # Lowpass filter.
+    s_mix_lowpass = butter_lowpass_filter(s_mix, 2.5e2, Fs)
+    # Highpass filter.
+    s_mix_highpass = butter_highpass_filter(s_mix, 2.5e2, Fs)
+
+    # Show results.
+    plot_time_freq_show(s_mix, Fs)
+    plot_time_freq_show(s_mix_bandstop, Fs, "bandstop{2e2, 4e2}")
+    plot_time_freq_show(s_mix_bandpass, Fs, "bandpass{2e2, 4e2}")
+    plot_time_freq_show(s_mix_lowpass, Fs, "lowpass{2.5e2}")
+    plot_time_freq_show(s_mix_highpass, Fs, "highpass{2.5e2}")
