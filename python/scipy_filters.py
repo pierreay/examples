@@ -62,11 +62,22 @@ def butter_highpass_filter(data, cutoff, fs, order=5):
 
 # * Plotting
 
-def plot_time_freq(s):
-    plt.plot(t, s, 'k-')
-    plt.xlabel('Time')
+def plot_time(s):
+    subplot_1 = plt.subplot(2, 1, 1)
+    subplot_1.plot(t, s, 'k-')
+    plt.xlabel('Time [s]')
     plt.ylabel('Amplitude')
-    plt.axis([None, None, -1, 1])
+    subplot_1.axis([None, None, -1, 1])
+
+def plot_freq(s, Fs):
+    subplot_2 = plt.subplot(2, 1, 2)
+    subplot_2.specgram(s, NFFT=256, Fs=Fs)
+    plt.xlabel("Time [s]")
+    plt.ylabel("Frequency [Hz]")
+
+def plot_time_freq(s, Fs):
+    plot_time(s)
+    plot_freq(s, Fs)
 
 # * Example
 
@@ -88,5 +99,5 @@ if __name__ == "__main__":
     # Generate a composed signal with Numpy to operate on it.
     s_mix = np.multiply.reduce(s)
 
-    plot_time_freq(s_mix)
+    plot_time_freq(s_mix, Fs)
     plt.show()
