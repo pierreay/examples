@@ -3,6 +3,12 @@
 import sys
 import math
 
+def print_number(x, label="x"):
+    print("{}_base2_size={} bits".format(label, len("{:b}".format(x))))
+    print("{}_base2=0b{:b}".format(label, x))
+    print("{}_base10={}".format(label, x))
+    print("{}_base16=0x{:x}".format(label, x))
+
 maxword = sys.maxsize * 2 + 1
 print("Maximum value representable by an interpreter's unsigned word:")
 print(maxword)
@@ -13,7 +19,4 @@ assert(len("{:b}".format(maxword)) == math.log2(maxword))
 
 print("int type is unbouded, example with a 128-bits number:")
 int128 = (0b1111 << 124) | 0xdeadbeefdeadbeef
-print("int128_base2_len={}".format(len("{:b}".format(int128))))
-print("int128_base2=0b{:b}".format(int128))
-print("int128_base10={}".format(int128))
-print("int128_base16=0x{:x}".format(int128))
+print_number(int128, "int128")
