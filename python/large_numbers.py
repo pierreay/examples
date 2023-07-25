@@ -9,6 +9,8 @@ def print_number(x, label="x"):
     print("{}_base10={}".format(label, x))
     print("{}_base16=0x{:x}".format(label, x))
 
+# * Interpreter word's maximum size
+
 maxword = sys.maxsize * 2 + 1
 print("Maximum value representable by an interpreter's unsigned word:")
 print(maxword)
@@ -17,6 +19,14 @@ print(int(math.log2(maxword)))
 # Another method to compute number of bits:
 assert(len("{:b}".format(maxword)) == math.log2(maxword))
 
+# * Int large type
+
 print("int type is unbouded, example with a 128-bits number:")
 int128 = (0b1111 << 124) | 0xdeadbeefdeadbeef
 print_number(int128, "int128")
+
+# * Hex to Int conversion
+
+deadstr = "deadbeef"
+deadint = int(deadstr, 16)
+print("{:x}".format(deadint))
