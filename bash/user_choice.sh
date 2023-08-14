@@ -17,6 +17,7 @@ PS3='Please, enter your choice and press [ENTER]: '
 opts=("Option 1" "Option 2" "Option 3" "Quit")
 select opt in "${opts[@]}"
 do
+    # You can use $REPLY value instead of $opt value for "case" statement.
     case $opt in
         ${opts[0]})
             echo "Choice: $REPLY = $opt"
