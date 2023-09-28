@@ -22,6 +22,8 @@ if __name__ == "__main__":
     ps[0].start()
     ps[1].start()
     # Block until having a result in the queue.
+    # Queue must be read before to join processes, otherwise, deadlock. See
+    # documentation of multiprocessing.Queue.
     print(q.get())
     print(q.get())
     ps[0].join()
