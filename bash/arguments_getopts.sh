@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Test:
-# ./arguments_getopt.sh -vf /etc/hosts foo bar
+# ./arguments_getopts.sh -vf /etc/hosts foo bar
 
 # POSIX's variable of the index of next element in the argv array.
 # Reset in case getopts has been used previously in the shell.
@@ -17,7 +17,7 @@ args=""
 # Program's help.
 function help() {
     cat << EOF
-Usage: arguments_getopt.sh [-v] [-f OUTPUT_FILE] [ARGS...]
+Usage: arguments_getopts.sh [-v] [-f OUTPUT_FILE] [ARGS...]
 EOF
     exit 0
 }
