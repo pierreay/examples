@@ -10,7 +10,8 @@ OPTIND=1
 # Program's options (switches).
 verbose=0
 # Program's option-arguments (variables).
-output_file=""
+output_file_default="/dev/null"
+output_file=$output_file_default
 # Program's arguments.
 args=""
 
@@ -18,6 +19,8 @@ args=""
 function help() {
     cat << EOF
 Usage: arguments_getopts.sh [-v] [-f OUTPUT_FILE] [ARGS...]
+
+OUTPUT_FILE is the output file of the program [default = $output_file_default]
 EOF
     exit 0
 }
