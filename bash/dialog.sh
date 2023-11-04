@@ -2,7 +2,9 @@
 
 # * About
 
-# Demonstrate how the dialog program can be used to create menus.
+# Demonstrate how to use the dialog program to create menus. This program use
+# NCurses under the hood.
+
 # Dialog should be installed using a package manager, for example:
 # sudo pacman -S dialog
 
