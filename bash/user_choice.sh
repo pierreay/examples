@@ -14,6 +14,9 @@ done
 # * "select" Menu
 
 PS3='Please, enter your choice and press [ENTER]: '
+# Set maximum column number where is it allow to start an option display. Set
+# it to 1 to force 1 option per line.
+COLUMN=80
 opts=("Option 1" "Option 2" "Option 3" "Quit")
 select opt in "${opts[@]}"
 do
