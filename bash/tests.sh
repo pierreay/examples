@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # Alternatives:
+# POSIX-compatible:
 # command -v $1 &> /dev/null
+# Work but not recommended:
 # which $1 &> /dev/null
+# See https://stackoverflow.com/questions/592620/how-can-i-check-if-a-program-exists-from-a-bash-script
 function command_exist() {
     # if statement
     if type $1 &> /dev/null; then
