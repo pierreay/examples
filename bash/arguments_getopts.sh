@@ -31,8 +31,9 @@ if [[ $# -lt 1 ]]; then
 fi
 
 # Iterate over all supplied options and option-arguments.
-# "f:" means that -f is an option-argument.
-# "?" means that -? is an alias for -h.
+# NOTE: "f:" means that -f is an option-argument.
+# NOTE: "?" here is another argument that is an alias for -h since we have the
+#       case "h|\?".
 while getopts "h?vf:" opt; do
   case "$opt" in
     h|\?)
