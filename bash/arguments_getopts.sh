@@ -34,6 +34,8 @@ fi
 # NOTE: "f:" means that -f is an option-argument.
 # NOTE: "?" here is another argument that is an alias for -h since we have the
 #       case "h|\?".
+# NOTE: The getopts call should not be included in a function but in the larger
+#       script scope, otherwise it will not work.
 while getopts "h?vf:" opt; do
   case "$opt" in
     h|\?)
