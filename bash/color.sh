@@ -24,3 +24,6 @@ done
 
 echo
 echo
+
+echo "Remove ANSI colors escape sequence code:"
+ls -alh ~ | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g"
