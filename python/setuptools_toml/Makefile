@@ -1,6 +1,20 @@
 # Package name.
 PKG_NAME=setuptools_toml
 
+# * Running
+
+# Run the package main function as a module and exit.
+run:
+	python -c "from $(PKG_NAME) import main; main.main()"
+
+# Run the package main function as a module and gives interactive REPL.
+run-repl:
+	python -i -c "from $(PKG_NAME) import main; main.main()"
+
+# Run the package main function as a script.
+run-script:
+	$(PKG_NAME)/main.py
+
 # * Building
 
 # Build the Python distribution of our project.
