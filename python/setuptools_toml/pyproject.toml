@@ -1,0 +1,21 @@
+# Build system configuration.
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+# Project metadata configuration.
+[project]
+name = "setuptools_toml"
+version = "0.0.1"
+# dependencies = [
+#     "click",
+#     "colorlog",
+#     "numpy",
+#     "matplotlib"
+# ]
+
+# Scripts configuration.
+[project.scripts]
+# Will create a "setuptools_toml-cli" Bash script targeting the
+# "setuptools_toml" package, "main" module, "main()" function.
+setuptools_toml-cli = "setuptools_toml.main:main"
