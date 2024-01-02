@@ -1,19 +1,36 @@
+# * Project configuration
+
 # Package name.
 PKG_NAME=mypkg
+
+# Main module name.
+MOD_NAME=mymod
+
+# Package directory.
+PKG_DIR=src
+
+# Python interpreter.
+PYSHELL=python # [python | ipython]
 
 # * Running
 
 # Run the package main function as a module and exit.
-run:
-	python -c "from $(PKG_NAME) import main; main.main()"
+run-once:
+	PYTHONPATH=$(PKG_DIR) $(PYSHELL) -c "from $(PKG_NAME) import $(MOD_NAME); $(MOD_NAME).main();"
 
-# Run the package main function as a module and gives interactive REPL.
+# Import the package main module and gives an interactive REPL.
 run-repl:
-	python -i -c "from $(PKG_NAME) import main; main.main()"
+	PYTHONPATH=$(PKG_DIR) $(PYSHELL) -i -c "from $(PKG_NAME) import $(MOD_NAME);"
 
-# Run the package main function as a script.
+# Run the package main module as a script.
 run-script:
-	$(PKG_NAME)/main.py
+	PYTHONPATH=$(PKG_DIR) $(PKG_DIR)/$(PKG_NAME)/mymod.py
+
+# * Testing
+
+# Run the library test as a script.
+test-lib:
+	PYTHONPATH=$(PKG_DIR) $(PKG_DIR)/$(PKG_NAME)/mylib.py
 
 # * Building
 
@@ -53,5 +70,6 @@ uninstall-user:
 
 clean:
 	sudo rm -rf build
-	sudo rm -rf $(PKG_NAME).egg-info
-	sudo rm -rf $(PKG_NAME)/__pycache__
+	sudo rm -rf dist
+	sudo rm -rf $(PKG_DIR)/$(PKG_NAME).egg-info
+	sudo rm -rf $(PKG_DIR)/$(PKG_NAME)/__pycache__

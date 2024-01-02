@@ -2,11 +2,6 @@
 
 """My package initialization file."""
 
-# NOTE: Allows to call scripts directly from project root.
-if __name__ == "__main__":
-    import sys
-    sys.path.append(".")
-
 # Import a package module.
 from mypkg import mylib
 
