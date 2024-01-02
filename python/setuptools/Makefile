@@ -25,7 +25,7 @@ run-repl:
 
 # Run the package main module as a script.
 run-script:
-	PYTHONPATH=$(PKG_DIR) $(PKG_DIR)/$(PKG_NAME)/mymod.py
+	PYTHONPATH=$(PKG_DIR) $(PKG_DIR)/$(PKG_NAME)/$(MOD_NAME).py
 
 # * Testing
 
