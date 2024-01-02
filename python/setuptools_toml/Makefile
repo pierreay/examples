@@ -1,5 +1,5 @@
 # Package name.
-PKG_NAME=setuptools_toml
+PKG_NAME=mypkg
 
 # * Running
 

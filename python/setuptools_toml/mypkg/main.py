@@ -6,7 +6,7 @@ if __name__ == "__main__":
     sys.path.append(".")
 
 # Import a package module.
-from setuptools_toml import lib
+from mypkg import lib
 
 # Main function of our package.
 def main():

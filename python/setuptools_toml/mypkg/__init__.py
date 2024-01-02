@@ -6,7 +6,7 @@ if __name__ == "__main__":
     sys.path.append(".")
 
 # Import a package module.
-from setuptools_toml import lib
+from mypkg import lib
 
 # Initialize the package.
 print("Call lib.hello_world() from '__init__.py'...")

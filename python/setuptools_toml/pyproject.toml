@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 # Project metadata configuration.
 [project]
-name = "setuptools_toml"
+name = "mypkg"
 version = "0.0.1"
 # dependencies = [
 #     "click",
@@ -16,9 +16,9 @@ version = "0.0.1"
 
 # Scripts configuration.
 [project.scripts]
-# Will create a "setuptools_toml-cli" Bash script targeting the
-# "setuptools_toml" package, "main" module, "main()" function.
-setuptools_toml-cli = "setuptools_toml.main:main"
+# Will create a "mypkg-cli" Bash script targeting the "mypkg" package, "main"
+# module, "main()" function.
+mypkg-cli = "mypkg.main:main"
 
 # Package layout.
 # NOTE: Disabling the following options will enable the automatic package
