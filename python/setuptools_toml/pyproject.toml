@@ -16,9 +16,9 @@ version = "0.0.1"
 
 # Scripts configuration.
 [project.scripts]
-# Will create a "mypkg-cli" Bash script targeting the "mypkg" package, "main"
+# Will create a "mypkg-cli" Bash script targeting the "mypkg" package, "mymod"
 # module, "main()" function.
-mypkg-cli = "mypkg.main:main"
+mypkg-cli = "mypkg.mymod:main"
 
 # Package layout.
 # NOTE: Disabling the following options will enable the automatic package
