@@ -7,6 +7,7 @@ PKG_NAME=mypkg
 MOD_NAME=mymod
 
 # Package directory.
+# NOTE: This corresponds to the so-called "src" layout of Python documentation.
 PKG_DIR=src
 
 # Python interpreter.
