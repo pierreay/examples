@@ -6,5 +6,5 @@
 from mypkg import mylib
 
 # Initialize the package.
-print("Call mylib.hello_world() from '__init__.py'...")
-mylib.hello_world()
+print("Call mylib.hello_init() from '__init__.py'...")
+mylib.hello_init()
