@@ -19,3 +19,10 @@ version = "0.0.1"
 # Will create a "setuptools_toml-cli" Bash script targeting the
 # "setuptools_toml" package, "main" module, "main()" function.
 setuptools_toml-cli = "setuptools_toml.main:main"
+
+# Package layout.
+# NOTE: Disabling the following options will enable the automatic package
+# discovery of Setuptools. In this project, we use the "src" layout.
+# See: https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+# [options]
+# packages = mypkg
