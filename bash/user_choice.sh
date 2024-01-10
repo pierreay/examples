@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# * "read" confirmation
+
+read -p "Press [ENTER] to continue..."
+
 # * "read" Y/N
 
 # Only works for Bash, not ZSH.
