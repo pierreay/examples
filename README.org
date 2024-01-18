@@ -5,3 +5,11 @@ Programming examples.
 Contains from small snippets of code to multiple files architecture examples
 for several programming languages and various finals applications (big
 software, small utility, PDF document, HTML website...).
+
+* Tasks
+
+** TODO Separate examples and scripts
+
+In this repository, some scripts are programming examples (/e.g./
+[[file:python/cli_click.py]]) and others are scripts (/e.g./
+[[file:python/scipy_align.py]]). Separate them in two repositories.
