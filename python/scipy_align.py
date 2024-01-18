@@ -18,7 +18,7 @@ def butter_lowpass_filter(data, cutoff, fs, order=5):
     y = lfilter(b, a, data)
     return y
 
-def shift(sig, shift):
+def shiftsig(sig, shift):
     """Shift a signal SIG from the SHIFT offset.
 
     Shift a signal SIG to left (positive SHIFT) or right (negative
@@ -59,7 +59,7 @@ def align(template, target, sr):
     corr         = signal.correlate(target_lpf, template_lpf)
     shift        = np.argmax(corr) - (len(template) - 1)
     # Apply shift on the raw target signal.
-    return analyze.shift(target, shift)
+    return shiftsig(target, shift)
 
 def align_nb(s, nb, sr, template):
     s_aligned = [0] * nb
