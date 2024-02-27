@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+
+# NOTE: The "2" specify the configuration version (supporting older styles for
+# backwards compatibility). Don't change it unless you know what you're doing.
+Vagrant.configure("2") do |config|
+  # Requires a box with Ubuntu Xenial 16.04 LTS in 64-bit version.
+  # NOTE: They are searched from https://app.vagrantup.com/boxes/search
+  config.vm.box = "ubuntu/xenial64"
+
+  # Share the host demo folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder.
+  config.vm.synced_folder ".", "/home/vagrant/host-working-directory"
+
+  # Provider-specific configuration.
+  config.vm.provider "virtualbox" do |vb|
+      # Enable USB 3.0.
+      vb.customize ["modifyvm", :id, "--usb", "on"]
+      vb.customize ["modifyvm", :id, "--usbxhci", "on"]
+      # Allow any USB device to be grabbed by the VM.
+      vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'All', '--vendorid', '', '--productid', '']
+  end
+
+  # Provision the VM with a Makefile from the host run as the user:
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    # You can type any commands that will be executed by the user:
+    sudo apt-get install tmux make git
+    cd ~/host-working-directory
+    make install
+  SHELL
+end
