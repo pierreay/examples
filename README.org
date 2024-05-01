@@ -13,6 +13,15 @@ software, small utility, PDF document, HTML website...).
 :DIR:      c
 :END:
 
+*** Linux Kernel
+:PROPERTIES:
+:ID:       8aa65925-2eb0-4072-b5e6-97d7e47af30a
+:DIR:      c/linux_kernel
+:END:
+
+- [[attachment:hello_world/][hello_world]] :: Demonstrate module initialization and finalization,
+  compilation, loading, removing.
+
 * Tasks
 
 ** TODO Separate examples and scripts
