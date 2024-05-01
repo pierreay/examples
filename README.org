@@ -1,10 +1,17 @@
-* About
+#+TITLE: Programming examples
 
-Programming examples.
+* About
 
 Contains from small snippets of code to multiple files architecture examples
 for several programming languages and various finals applications (big
 software, small utility, PDF document, HTML website...).
+
+* Languages
+
+** C
+:PROPERTIES:
+:DIR:      c
+:END:
 
 * Tasks
 
