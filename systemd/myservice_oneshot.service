@@ -1,0 +1,14 @@
+# Systemd Oneshot service.
+# =====================
+
+# This will execute a simple command at the system startup.
+
+[Unit]
+Description=My simple command
+
+[Service]
+Type=oneshot
+ExecStart=sh -c "echo myvalue > /sys/my/param"
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,19 @@
+# Systemd Fork service.
+# =====================
+
+# This will start a daemon service in the background in its own fork process.
+# It will have a dedicated Start and Stop command.
+# If it fails, it will be restarted.
+
+[Unit]
+Description=Git-Annex Assistant
+Documentation=man:git-annex(1) man:git-annex-assistant(1) https://git-annex.branchable.com/
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/git annex assistant --autostart
+ExecStop=/usr/bin/git annex assistant --autostop
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
