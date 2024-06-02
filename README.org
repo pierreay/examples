@@ -25,6 +25,14 @@ software, small utility, PDF document, HTML website...).
 - [[attachment:hello_world/][hello_world]] :: Demonstrate module initialization and finalization,
   compilation, loading, removing.
 
+** Python
+:PROPERTIES:
+:DIR:      python
+:ID:       addde48a-0d0b-4390-b46f-ca78d9c316c7
+:END:
+
+- [[attachment:cli_click.py][cli_click.py]] :: Most basic example for generating a CLI using Click.
+
 ** SystemD
 :PROPERTIES:
 :DIR:      systemd/
