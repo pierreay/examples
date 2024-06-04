@@ -31,7 +31,8 @@ software, small utility, PDF document, HTML website...).
 :ID:       addde48a-0d0b-4390-b46f-ca78d9c316c7
 :END:
 
-- [[attachment:cli_click.py][cli_click.py]] :: Most basic example for generating a CLI using Click.
+- [[attachment:pickle_basic.py][pickle_basic.py]] :: Basic example for (de)serializing a Python object.
+- [[attachment:cli_click.py][cli_click.py]] :: Basic example for generating a CLI using Click.
 
 ** SystemD
 :PROPERTIES:
