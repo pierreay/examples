@@ -64,3 +64,9 @@ if [[ $? == 1 ]]; then
 else
     echo "Does not install!"
 fi
+
+# * FZF selection
+
+fzf_options=("option1" "option2")
+fzf_choice=$(printf "%s\n" "${fzf_options[@]}" | fzf --ansi)
+echo "FZF choice: ${fzf_choice}"
