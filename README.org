@@ -51,6 +51,14 @@ software, small utility, PDF document, HTML website...).
 
 - [[attachment:archlinux/][archlinux]] :: Demonstrate creating an Arch Linux docker.
 
+** Makefile
+:PROPERTIES:
+:DIR:      make
+:END:
+
+- [[attachment:patcher/Makefile][patcher/Makefile]] :: Example of Makefile used as patching interface for
+  experiment reproduction.
+
 * Tasks
 
 ** TODO Separate examples and scripts
