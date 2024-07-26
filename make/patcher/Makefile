@@ -5,11 +5,11 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 # URL of the PoC.
-REPO_URL:=https://github.com/tiiuae/jamrf
+REPO_URL:=https://github.com/user/project
 # Path of the PoC.
-REPO_PATH:=/tmp/jamrf
+REPO_PATH:=/tmp/project
 # Commit to use.
-REPO_COMMIT=f69801f
+REPO_COMMIT=deadbef
 
 # * Recipes
 
@@ -35,14 +35,10 @@ prepare:
 	cd $(REPO_PATH) && git restore .
 	cd $(REPO_PATH) && git checkout $(REPO_COMMIT)
 
-patch-fm:		## Patch the PoC for FM jamming.
-patch-fm: prepare
-	cd $(REPO_PATH) && patch -p1 -i $(ROOT_DIR)/poc-constant-jammer-97_1-mhz-fm.patch
-
-patch-wifi:		## Patch the PoC for Wi-Fi jamming.
-patch-wifi: prepare
-	cd $(REPO_PATH) && patch -p1 -i $(ROOT_DIR)/poc-reactive-jammer-5_3-ghz-wifi.patch
+patch-xxx:		## Patch the PoC for XXX.
+patch-xxx: prepare
+	cd $(REPO_PATH) && patch -p1 -i $(ROOT_DIR)/xxx.patch
 
 run:			## Run the PoC with previously applied patch.
 run: clone
-	cd $(REPO_PATH)/HackRF && python jamRF_v1.py
+	cd $(REPO_PATH) && ./run
