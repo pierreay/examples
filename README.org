@@ -11,6 +11,11 @@ software, small utility, PDF document, HTML website...).
 
 * Languages
 
+** Bash
+
+External examples:
+- [[https://github.com/archlinux/mkinitcpio/blob/master/mkinitcpio][mkinitcpio]]
+
 ** C
 :PROPERTIES:
 :DIR:      c
