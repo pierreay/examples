@@ -1,13 +1,11 @@
 :PROPERTIES:
 :ID:       94068fa5-fe90-4a1c-8e04-2aaea03b5976
 :END:
-#+TITLE: Programming examples
+#+TITLE: Programming Examples
 
 * About
 
-Contains from small snippets of code to multiple files architecture examples
-for several programming languages and various finals applications (big
-software, small utility, PDF document, HTML website...).
+Programming examples, code snippets, software templates.
 
 * Languages
 
@@ -54,7 +52,8 @@ External examples:
 :ID:       c0179af5-617a-44bb-b03e-d97ee01acc6c
 :END:
 
-- [[attachment:archlinux/][archlinux]] :: Demonstrate creating an Arch Linux docker.
+- [[attachment:archlinux/][archlinux]] :: Create an Arch Linux container.
+- [[attachment:ubuntu/][ubuntu]] :: Create an Ubuntu container.
 
 ** Makefile
 :PROPERTIES:
@@ -63,11 +62,3 @@ External examples:
 
 - [[attachment:patcher/Makefile][patcher/Makefile]] :: Example of Makefile used as patching interface for
   experiment reproduction.
-
-* Tasks
-
-** TODO Separate examples and scripts
-
-In this repository, some scripts are programming examples (/e.g./
-[[file:python/cli_click.py]]) and others are scripts (/e.g./
-[[file:python/scipy_align.py]]). Separate them in two repositories.
