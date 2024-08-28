@@ -1,4 +1,4 @@
-from ubuntu:latest
+FROM ubuntu:latest AS myubuntu-example
 # Automatically answer Yes for APT questions.
 ENV DEBIAN_FRONTEND noninteractive
 
