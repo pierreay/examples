@@ -6,11 +6,11 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -yq git vim python3-pip sudo wget unzip
 RUN pip3 install --break-system-packages setuptools numpy==2.0.0
 
-# Clone our project and move into it.
+# Clone our project and create an environment variable for it.
 ENV MYAPP=/examples
 RUN test -d examples && : || git clone https://github.com/pierreay/examples.git
 
-# Do something.
+# Move into it and do something.
 WORKDIR "${MYAPP}"
 RUN echo "MYAPP=${MYAPP}"
 RUN ls
