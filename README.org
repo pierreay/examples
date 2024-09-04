@@ -10,6 +10,10 @@ Programming examples, code snippets, software templates.
 * Languages
 
 ** Bash
+:PROPERTIES:
+:ID:       cc7f4e6f-99b5-44e4-aec5-807d0bf40e69
+:DIR:      bash
+:END:
 
 External examples:
 - [[https://github.com/archlinux/mkinitcpio/blob/master/mkinitcpio][mkinitcpio]]
@@ -17,6 +21,7 @@ External examples:
 ** C
 :PROPERTIES:
 :DIR:      c
+:ID:       f374f6a0-825f-452e-a51d-f6faa32c70fd
 :END:
 
 *** Linux Kernel
@@ -25,7 +30,7 @@ External examples:
 :DIR:      c/linux_kernel
 :END:
 
-- [[attachment:hello_world/][hello_world]] :: Demonstrate module initialization and finalization,
+- [[file:c/linux_kernel/hello_world][hello_world]] :: Demonstrate module initialization and finalization,
   compilation, loading, removing.
 
 ** Python
@@ -34,8 +39,8 @@ External examples:
 :ID:       addde48a-0d0b-4390-b46f-ca78d9c316c7
 :END:
 
-- [[attachment:pickle_basic.py][pickle_basic.py]] :: Basic example for (de)serializing a Python object.
-- [[attachment:cli_click.py][cli_click.py]] :: Basic example for generating a CLI using Click.
+- [[file:python/pickle_basic.py][pickle_basic.py]] :: Basic example for (de)serializing a Python object.
+- [[file:python/cli_click.py][cli_click.py]] :: Basic example for generating a CLI using Click.
 
 ** SystemD
 :PROPERTIES:
@@ -43,8 +48,8 @@ External examples:
 :ID:       5e5e1b21-a495-4aa7-bc89-bf615b2b7fa9
 :END:
 
-- [[attachment:myservice_oneshot.service][myservice_oneshot.service]] :: Execute a command at startup.
-- [[attachment:myservice_fork.service][myservice_fork.service]] :: Start a daemon at startup.
+- [[file:systemd/myservice_oneshot.service][myservice_oneshot.service]] :: Execute a command at startup.
+- [[file:systemd/myservice_fork.service][myservice_fork.service]] :: Start a daemon at startup.
 
 ** Docker
 :PROPERTIES:
@@ -52,15 +57,16 @@ External examples:
 :ID:       c0179af5-617a-44bb-b03e-d97ee01acc6c
 :END:
 
-- [[attachment:archlinux/][archlinux]] :: Create an Arch Linux container.
-- [[attachment:ubuntu/][ubuntu]] :: Create an Ubuntu container.
+- [[file:docker/archlinux][archlinux]] :: Create an Arch Linux container.
+- [[file:docker/ubuntu][ubuntu]] :: Create an Ubuntu container.
 
 ** Makefile
 :PROPERTIES:
 :DIR:      make
+:ID:       1cf9933b-60a0-4f4e-a1e1-202ad0e23270
 :END:
 
-- [[attachment:patcher/Makefile][patcher/Makefile]] :: Example of Makefile used as patching interface for
+- [[file:make/patcher][patcher]] :: Example of Makefile used as patching interface for
   experiment reproduction.
 
 ** Emacs
@@ -69,5 +75,5 @@ External examples:
 :ID:       e91158cb-f875-4d42-9903-32e637464212
 :END:
 
-- [[attachment:dir-locals/][dir-locals]] :: Define arbitrary variables and functions in a project.
-- [[attachment:pull-request/][pull-request]] :: Test a package branch for issues and pull-requests.
+- [[file:emacs/dir-locals][dir-locals]] :: Define arbitrary variables and functions in a project.
+- [[file:emacs/pull-request][pull-request]] :: Test a package branch for issues and pull-requests.
