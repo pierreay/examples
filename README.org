@@ -66,6 +66,8 @@ External examples:
 ** Emacs
 :PROPERTIES:
 :DIR:      emacs
+:ID:       e91158cb-f875-4d42-9903-32e637464212
 :END:
 
 - [[attachment:dir-locals/][dir-locals]] :: Define arbitrary variables and functions in a project.
+- [[attachment:pull-request/][pull-request]] :: Test a package branch for issues and pull-requests.

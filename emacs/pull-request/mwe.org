@@ -1,0 +1,8 @@
+* A heading
+:PROPERTIES:
+:ID:       25556746-afe1-4559-8481-af68f50dbfde
+:END:
+
+* Second heading
+
+Test text, with link to [[id:25556746-afe1-4559-8481-af68f50dbfde][A heading]].
