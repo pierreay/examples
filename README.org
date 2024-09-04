@@ -62,3 +62,10 @@ External examples:
 
 - [[attachment:patcher/Makefile][patcher/Makefile]] :: Example of Makefile used as patching interface for
   experiment reproduction.
+
+** Emacs
+:PROPERTIES:
+:DIR:      emacs
+:END:
+
+- [[attachment:dir-locals/][dir-locals]] :: Define arbitrary variables and functions in a project.
