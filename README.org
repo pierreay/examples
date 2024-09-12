@@ -77,3 +77,13 @@ External examples:
 
 - [[file:emacs/dir-locals][dir-locals]] :: Define arbitrary variables and functions in a project.
 - [[file:emacs/pull-request][pull-request]] :: Test a package branch for issues and pull-requests.
+
+** Lisp
+:PROPERTIES:
+:ID:       5f223071-7ed2-4356-9d5c-b6c343cf5f12
+:DIR:      lisp
+:END:
+
+- [[file:lisp/io.lisp][io.lisp]] :: I/O with a file.
+- [[file:lisp/list.lisp][list.lisp]] :: List manipulations.
+- [[file:lisp/math.lisp][math.lisp]] :: Mathematical operations.
