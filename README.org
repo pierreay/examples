@@ -33,6 +33,17 @@ External examples:
 - [[file:c/linux_kernel/hello_world][hello_world]] :: Demonstrate module initialization and finalization,
   compilation, loading, removing.
 
+** C++
+:PROPERTIES:
+:ID:       fd49bc88-7c0c-4184-895a-4ed5aeb67c8e
+:DIR:      cpp
+:END:
+
+- [[file:cpp/classes][classes]] :: Defining classes.
+- [[file:cpp/inheritance][inheritance]] :: Inheritance between classes.
+- [[file:cpp/overload][overload]] :: Overload classes methods.
+- [[file:cpp/template][template]] :: Operate on generic types with templates.
+
 ** Python
 :PROPERTIES:
 :DIR:      python
